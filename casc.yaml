@@ -1,0 +1,39 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: "${JENKINS_ADMIN_ID}"
+         password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:${JENKINS_ADMIN_ID}"
+        - "Overall/Read:anonymous"
+  remotingSecurity:
+    enabled: true
+
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+
+unclassified:
+  location:
+    url: http://devops:8080/
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - usernamePassword:
+            description: "Testing out github"
+            id: "github_user"
+            password: "${GIT_PASSWORD}"
+            scope: GLOBAL
+            username: "${GIT_USERNAME}"
+
+            
+jobs:
+  - file: /opt/jenkins/casc/jobs/ler_2_webservice.groovy

@@ -1,0 +1,22 @@
+
+version: '3.1'
+services:
+    jenkins:
+        build:
+            context: ./
+        restart: unless-stopped
+        user: jenkins
+        # volumes:
+            # - "${HOST_JENKINS_DATA}:/var/jenkins_home"
+            # - "${HOST_DOCKER}:/var/run/docker.sock"
+        environment: 
+            HOST_DOCKER: /var/run/docker.sock
+            HOST_JENKINS_DATA: /var/jenkins_home
+            JENKINS_ADMIN_ID: ${ADMIN_ID} # Manually added
+            JENKINS_ADMIN_PASSWORD: ${ADMIN_PASS} # Manually added
+            GIT_PASSWORD: ${GIT_PASSWORD} # Manually added
+            GIT_USERNAME: ${GIT_USERNAME} # Manually added 
+            
+        ports:
+            - "${HOST_WWW}:8080"
+            - "${HOST_OTHER}:50000"
