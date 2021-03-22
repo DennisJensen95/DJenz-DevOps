@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:latest
 
 ARG HOST_UID=1000
-ARG HOST_GID=999
+ARG HOST_GID=119
 
 USER root
 RUN apt-get -y update && \

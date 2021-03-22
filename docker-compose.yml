@@ -6,9 +6,9 @@ services:
             context: ./
         restart: unless-stopped
         user: jenkins
-        # volumes:
+        volumes:
             # - "${HOST_JENKINS_DATA}:/var/jenkins_home"
-            # - "${HOST_DOCKER}:/var/run/docker.sock"
+            - "${HOST_DOCKER}:/var/run/docker.sock"
         environment: 
             HOST_DOCKER: /var/run/docker.sock
             HOST_JENKINS_DATA: /var/jenkins_home
