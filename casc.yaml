@@ -1,4 +1,5 @@
 jenkins:
+  numExecutors: 1
   securityRealm:
     local:
       allowsSignup: false
@@ -36,4 +37,5 @@ credentials:
 
             
 jobs:
-  - file: /opt/jenkins/casc/jobs/ler_2_webservice.groovy
+  - file: /opt/jenkins/casc/jobs/atsp.groovy
+  - file: /opt/jenkins/casc/jobs/atsp_nightly.groovy
